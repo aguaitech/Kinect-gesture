@@ -6,6 +6,7 @@ import cv2
 import colorsys
 import math
 from bresenham import bresenham
+import os
 
 GRAY_COLOR = (65, 65, 65)
 CAPTURE_SIZE_KINECT = (512, 424)
@@ -214,8 +215,10 @@ def draw_skeleton(img, ut, user, col):
 
 def init_capture_device():
 
-    openni2.initialize()
-    nite2.initialize()
+    openni2.initialize(os.path.join(
+        os.path.dirname(__file__), 'OpenNI2', 'Redist'))
+    nite2.initialize(os.path.join(
+        os.path.dirname(__file__), 'NiTE', 'Redist'))
     return openni2.Device.open_any()
 
 
